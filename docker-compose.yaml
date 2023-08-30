@@ -1,0 +1,41 @@
+# compose syntax version.
+version: "3.6"
+
+services:
+  db:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: testemed
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - my-networks
+
+  app:
+    build:
+      args:
+        user: apinbs_app
+        uid: 1000
+      context: .
+      dockerfile: Dockerfile
+    image: hillushilbert/clinica:v1
+    container_name: app-clinica
+    volumes:
+      - ./app/clinica:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PASSWORD=12345
+      - DB_DATABASE=testemed
+    networks:
+      - my-networks
+
+networks:
+  my-networks:
+    driver: bridge

@@ -26,3 +26,4 @@ Route.get('/', async () => {
 
 Route.resource("planos", "PlanosController").apiOnly();
 Route.resource('users', 'UsersController');
+Route.resource('clinicas', 'ClinicasController').apiOnly();

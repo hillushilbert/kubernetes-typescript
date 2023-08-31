@@ -24,7 +24,7 @@ services:
     image: hillushilbert/clinica:v1
     container_name: app-clinica
     volumes:
-      - ./app/clinica:/app
+      - ./src:/app
     ports:
       - "3000:3000"
     depends_on:

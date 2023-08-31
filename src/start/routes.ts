@@ -24,6 +24,5 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.get('planos', 'PlanosController.index');
-
+Route.resource("planos", "PlanosController").apiOnly();
 Route.resource('users', 'UsersController');

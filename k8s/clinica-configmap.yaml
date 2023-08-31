@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clinica-configmap
+data:
+  PORT: "3000"
+  HOST: "0.0.0.0"
+  NODE_ENV: "development"
+  APP_KEY: "zFbQIN5U1km2ZrjMokLJAWOVUj_1WHSn"
+  DRIVE_DISK: "local"
+  DB_CONNECTION: "mysql"
+  MYSQL_HOST: "db-clinica"
+  MYSQL_PORT: "3306"
+  MYSQL_USER: "root"
+  MYSQL_PASSWORD: "123456"
+  MYSQL_DB_NAME: "testemed"

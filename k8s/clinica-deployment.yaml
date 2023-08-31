@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-clinica
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      nodePort: 30001
+  selector:
+    app: clinica
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clinica-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: clinica
+      labels:
+        app: clinica
+    spec:
+      containers:
+        - name: clinica-container
+          image: hillushilbert/clinica:v1
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: clinica-configmap
+  selector:
+    matchLabels:
+      app: clinica
